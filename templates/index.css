@@ -1,0 +1,108 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Aileron Regular', 'Livvic Bold','open Sans', sans-serif;
+}
+
+body{
+    background: white;
+}
+
+.nav{
+    height: 100px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 3rem;
+    background: #2F356D;
+    border-bottom-right-radius: 50px;
+    position: relative;
+    right: 20%;
+}
+
+img{
+    width: 10%;
+    height: 15%;
+}
+
+.logo{
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    top: 1%;
+    left: 85%;
+}
+
+a{
+    text-decoration: none;
+    color: #2F356D;
+}
+
+.nav a{
+    text-decoration: none;
+    color: white;
+    padding: 0 1.5rem;
+}
+
+.nav a:hover{
+    color: #2F356D;
+    background: white;
+    border-radius: 16px;
+    padding: .5rem 1rem;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: right;
+    color:#3C508A;
+    padding: 0rem 4rem;
+}
+
+p{
+    color: #2F356D;
+}
+
+.form-log{
+    color: #3F4382;
+    margin: 2%;
+    margin-left: 0;
+	width: 16 px;
+}
+
+.fgot-word{
+    font-size: .7rem;
+}
+
+input[name="Email"]{
+    background:#92A4D7;
+    color: white;
+    width: 15rem;
+    padding: .5rem .5rem;
+    border-style: none;
+    border-radius: 5px;
+}
+
+input[name="pass"]{
+    background:#92A4D7;
+    color: white;
+    width: 15rem;
+    padding: .5rem .5rem; 
+    border-style: none;
+    border-radius: 5px;
+}
+
+::placeholder{
+    color: white;
+}
+
+input[name="log-btn"]{
+    padding: .5rem 2rem;
+    font-size: .8rem;
+    border: none;
+    color: white;
+    background: #324B9A;
+    border-radius: 6px;
+}
