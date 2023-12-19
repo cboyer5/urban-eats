@@ -75,10 +75,16 @@ def get_reviews(business_id, yelp_api_key):
 
 def analyze_review_sentiment(review):
     """Analyze the sentiment of a review."""
-    processed_text = vectorizer.transform([review])
-    sentiment_label = model.predict(processed_text)[0]
-    sentiment_score = sentiment_mapping.get(sentiment_label, 0)  # Default to 0 if label not found
-    return sentiment_score
+    if vectorizer is not None:
+        processed_text = vectorizer.transform([review])
+        sentiment_label = model.predict(processed_text)[0]
+        sentiment_score = sentiment_mapping.get(sentiment_label, 0)  # Default to 0 if label not found
+        return sentiment_score
+    else:
+        print("Vectorizer is not available.")
+        # Handle the case where vectorizer is not available, e.g., return a default sentiment score
+        return 0
+
 
 def calculate_aggregate_score(sentiment_score, subjectivity_score, star_rating=3):
     """Calculate the aggregate score for a review."""
