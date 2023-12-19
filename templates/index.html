@@ -28,5 +28,22 @@
 
         <input type="submit" value="Search">
     </form>
+
+    {% block content %}
+        {% if results %}
+            <h2>Analysis Results</h2>
+            <ul>
+                {% for review in results['reviews'] %}
+                    <li>
+                        <strong>Review:</strong> {{ review['review'] }}<br>
+                        <strong>Sentiment Score:</strong> {{ review['sentiment_score'] }}<br>
+                        <strong>Subjectivity Score:</strong> {{ review['subjectivity_score'] }}<br>
+                        <strong>Aggregate Score:</strong> {{ review['aggregate_score'] }}<br>
+                    </li>
+                {% endfor %}
+                <li><strong>Overall Score:</strong> {{ results['overall_score'] }}</li>
+            </ul>
+        {% endif %}
+    {% endblock %}
 </body>
 </html>
