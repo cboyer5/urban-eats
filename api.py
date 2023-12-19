@@ -11,11 +11,14 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-# File Paths with Forward Slashes
-model_path = 'C:/Users/cboye/Downloads/urban-eats/LRM.joblib'
-vectorizer_path = 'C:/Users/cboye/Downloads/urban-eats/vectorizer.joblib'
+ Set default paths for model and vectorizer
+DEFAULT_MODEL_PATH = "default_model.joblib"
+DEFAULT_VECTORIZER_PATH = "default_vectorizer.joblib"
 
-# Load the saved model and vectorizer
+# Load model and vectorizer from environment variables or use default paths
+model_path = os.environ.get("MODEL_PATH", DEFAULT_MODEL_PATH)
+vectorizer_path = os.environ.get("VECTORIZER_PATH", DEFAULT_VECTORIZER_PATH)
+
 try:
     model = load(model_path)
     vectorizer = load(vectorizer_path)
