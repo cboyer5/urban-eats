@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import requests
+import random
 import os
 from dotenv import load_dotenv
 from joblib import load
@@ -82,7 +83,7 @@ def analyze_review_sentiment(review):
     else:
         print("Vectorizer is not available.")
         # Handle the case where vectorizer is not available, e.g., return a default sentiment score
-        return 100
+        return 4 * random.random() - 2
 
 
 def calculate_aggregate_score(sentiment_score, subjectivity_score, star_rating=3):
