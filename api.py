@@ -93,7 +93,7 @@ def calculate_aggregate_score(sentiment_score, subjectivity_score, star_rating=3
 def index():
     return render_template('index.html')
     
-@app.route('/analyze_business', methods=['GET'])
+@app.route('/analyze_business', methods=['POST'])
 def analyze_business():
     data = request.json
     name = data['name']
