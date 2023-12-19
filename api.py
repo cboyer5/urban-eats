@@ -87,10 +87,13 @@ def analyze_review_sentiment(review):
 
 
 def calculate_aggregate_score(sentiment_score, subjectivity_score, star_rating=3):
-    """Calculate the aggregate score for a review."""
+    """Calculate the aggregate score for a review and normalize it to a 1-5 scale."""
     normalized_star_rating = star_rating - 3  # Normalize star rating to -2 to 2 scale
-    weight = 1 - subjectivity_score if sentiment_score > 0 else 1
-    return (sentiment_score * weight + normalized_star_rating) / 2
+    weight = subjectivity_score
+    aggregate_score = (sentiment_score * weight + normalized_star_rating) / 2
+
+    normalized_score = (aggregate_score + 2) * (4/4) + 2
+    return normalized_score
 
 @app.route('/')
 def index():
@@ -105,8 +108,6 @@ def analyze_business():
     state = data.get('state')
     country = data.get('country')
     zip_code = data.get('zip_code')
-
-    print(f"Received form data: {data}")
 
     business_id = find_business(name, address, city, state, country, zip_code, yelp_api_key)
     if business_id:
@@ -127,7 +128,7 @@ def analyze_business():
             })
 
         overall_score = sum(review['aggregate_score'] for review in analyzed_reviews) / len(analyzed_reviews)
-        return jsonify({"overall_score": overall_score, "reviews": analyzed_reviews})
+        return render_template('index.html', results={"overall_score": overall_score, "reviews": analyzed_reviews})
 
     else:
         return jsonify({"error": "Business not found"}), 404
