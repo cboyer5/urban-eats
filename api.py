@@ -1,19 +1,16 @@
-from flask import Flask, request, jsonify
-from flask import render_template
+from flask import Flask, request, jsonify, render_template
+from flask_cors import CORS
 import requests
 import os
 from dotenv import load_dotenv
 from joblib import load
 from textblob import TextBlob
-from flask_cors import CORS
 
-# Initialize Flask app
 app = Flask(__name__)
 CORS(app)
 
 DEFAULT_MODEL_PATH = "default_model.joblib"
 DEFAULT_VECTORIZER_PATH = "default_vectorizer.joblib"
-
 
 model_path = os.environ.get("MODEL_PATH", DEFAULT_MODEL_PATH)
 vectorizer_path = os.environ.get("VECTORIZER_PATH", DEFAULT_VECTORIZER_PATH)
@@ -88,20 +85,20 @@ def calculate_aggregate_score(sentiment_score, subjectivity_score, star_rating=3
     normalized_star_rating = star_rating - 3  # Normalize star rating to -2 to 2 scale
     weight = 1 - subjectivity_score if sentiment_score > 0 else 1
     return (sentiment_score * weight + normalized_star_rating) / 2
-    
+
 @app.route('/')
 def index():
     return render_template('index.html')
-    
+
 @app.route('/analyze_business', methods=['POST'])
 def analyze_business():
-    data = request.json
-    name = data['name']
-    address = data['address']
-    city = data['city']
-    state = data['state']
-    country = data['country']
-    zip_code = data['zip_code']
+    data = request.form
+    name = data.get('name')
+    address = data.get('address')
+    city = data.get('city')
+    state = data.get('state')
+    country = data.get('country')
+    zip_code = data.get('zip_code')
 
     business_id = find_business(name, address, city, state, country, zip_code, yelp_api_key)
     if business_id:
@@ -129,3 +126,4 @@ def analyze_business():
 
 if __name__ == '__main__':
     app.run(threaded=True, port=int(os.environ.get('PORT', 5000)))
+
