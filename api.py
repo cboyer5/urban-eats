@@ -93,12 +93,17 @@ def index():
 @app.route('/analyze_business',methods=['GET', 'POST'])
 def analyze_business():
     data = request.json
-    name = data['name']
-    address = data['address']
-    city = data['city']
-    state = data['state']
-    country = data['country']
-    zip_code = data['zip_code']
+
+    # Check if 'name' key is present in the data dictionary
+    name = data.get('name')
+    if name is None:
+        return jsonify({"error": "'name' key not found in request data"}), 400
+
+    address = data.get('address')
+    city = data.get('city')
+    state = data.get('state')
+    country = data.get('country')
+    zip_code = data.get('zip_code')
 
     business_id = find_business(name, address, city, state, country, zip_code, yelp_api_key)
     if business_id:
