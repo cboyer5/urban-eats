@@ -9,8 +9,8 @@ from textblob import TextBlob
 app = Flask(__name__)
 CORS(app)
 
-DEFAULT_MODEL_PATH = "default_model.joblib"
-DEFAULT_VECTORIZER_PATH = "default_vectorizer.joblib"
+DEFAULT_MODEL_PATH = "LRM.joblib"
+DEFAULT_VECTORIZER_PATH = "vectorizer.joblib"
 
 model_path = os.environ.get("MODEL_PATH", DEFAULT_MODEL_PATH)
 vectorizer_path = os.environ.get("VECTORIZER_PATH", DEFAULT_VECTORIZER_PATH)
