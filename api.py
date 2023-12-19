@@ -100,6 +100,8 @@ def analyze_business():
     country = data.get('country')
     zip_code = data.get('zip_code')
 
+    print(f"Received form data: {data}")
+
     business_id = find_business(name, address, city, state, country, zip_code, yelp_api_key)
     if business_id:
         yelp_reviews = get_reviews(business_id, yelp_api_key)
