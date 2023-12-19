@@ -12,8 +12,8 @@ CORS(app)
 DEFAULT_MODEL_PATH = "LRM.joblib"
 DEFAULT_VECTORIZER_PATH = "vectorizer.joblib"
 
-model_path = os.environ.get("MODEL_PATH", DEFAULT_MODEL_PATH)
-vectorizer_path = os.environ.get("VECTORIZER_PATH", DEFAULT_VECTORIZER_PATH)
+model_path =load("LRM.joblib")
+vectorizer_path = ("vectorizer.joblib")
 
 try:
     model = load(model_path)
