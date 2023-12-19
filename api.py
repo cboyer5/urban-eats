@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask import render_template
 import requests
 import os
 from dotenv import load_dotenv
@@ -88,7 +89,7 @@ def calculate_aggregate_score(sentiment_score, subjectivity_score, star_rating=3
     
 @app.route('/')
 def index():
-    return "Hello, World! This is your Flask app."
+    return render_template('index.html')
     
 @app.route('/analyze_business',methods=['GET', 'POST'])
 def analyze_business():
