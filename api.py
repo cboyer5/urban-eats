@@ -9,8 +9,8 @@ from textblob import TextBlob
 app = Flask(__name__)
 CORS(app)
 
-model_url = os.environ.get("MODEL_URL", "https://raw.githubusercontent.com/yourusername/yourrepository/main/LRM.joblib")
-vectorizer_url = os.environ.get("VECTORIZER_URL", "https://raw.githubusercontent.com/yourusername/yourrepository/main/vectorizer.joblib")
+model_url = os.environ.get("MODEL_URL", "https://raw.githubusercontent.com/cboyer5/urban-eats/main/LRM.joblib")
+vectorizer_url = os.environ.get("VECTORIZER_URL", "https://raw.githubusercontent.com/cboyer5/urban-eats/main/vectorizer.joblib")
 
 try:
     model = load(BytesIO(requests.get(model_url).content))
