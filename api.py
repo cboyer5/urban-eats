@@ -9,15 +9,13 @@ from textblob import TextBlob
 app = Flask(__name__)
 CORS(app)
 
-DEFAULT_MODEL_PATH = "LRM.joblib"
-DEFAULT_VECTORIZER_PATH = "vectorizer.joblib"
-
-model_path =load(DEFAULT_MODEL_PATH)
-vectorizer_path = load(DEFAULT_VECTORIZER_PATH)
+model_url = os.environ.get("MODEL_URL", "https://raw.githubusercontent.com/yourusername/yourrepository/main/your_model.joblib")
+vectorizer_url = os.environ.get("VECTORIZER_URL", "https://raw.githubusercontent.com/yourusername/yourrepository/main/your_vectorizer.joblib")
 
 try:
-    model = load(model_path)
-    vectorizer = load(vectorizer_path)
+    model = load(BytesIO(requests.get(model_url).content))
+    vectorizer = load(BytesIO(requests.get(vectorizer_url).content))
+    print("Model and Vectorizer loaded successfully.")
 except Exception as e:
     print(f"Error loading model or vectorizer: {e}")
     model = None
