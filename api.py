@@ -11,8 +11,8 @@ app = Flask(__name__)
 CORS(app)
 
 # File Paths with Forward Slashes
-model_path = 'C:/Users/cboye/Downloads/urban-eats/venv/other_directories_and_files/LRM.joblib'
-vectorizer_path = 'C:/Users/cboye/Downloads/urban-eats/venv/other_directories_and_files/vectorizer.joblib'
+model_path = 'C:/Users/cboye/Downloads/urban-eats/LRM.joblib'
+vectorizer_path = 'C:/Users/cboye/Downloads/urban-eats/vectorizer.joblib'
 
 # Load the saved model and vectorizer
 try:
