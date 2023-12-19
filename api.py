@@ -85,7 +85,11 @@ def calculate_aggregate_score(sentiment_score, subjectivity_score, star_rating=3
     normalized_star_rating = star_rating - 3  # Normalize star rating to -2 to 2 scale
     weight = 1 - subjectivity_score if sentiment_score > 0 else 1
     return (sentiment_score * weight + normalized_star_rating) / 2
-
+    
+@app.route('/')
+def index():
+    return "Hello, World! This is your Flask app."
+    
 @app.route('/analyze_business', methods=['POST'])
 def analyze_business():
     data = request.json
