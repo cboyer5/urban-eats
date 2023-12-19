@@ -81,7 +81,7 @@ def analyze_review_sentiment(review):
         sentiment_score = sentiment_mapping.get(sentiment_label, 0)  # Default to 0 if label not found
         return sentiment_score
     else:
-        print("Vectorizer is not available.")
+        console.log("Vectorizer is not available.")
         # Handle the case where vectorizer is not available, e.g., return a default sentiment score
         return 0
 
